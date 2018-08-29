@@ -1,7 +1,7 @@
 from gamegrid import *
 from random import randint
 
-
+nbKillKount = 0
 
 class collider:
     objects = []
@@ -56,6 +56,16 @@ class Human(Actor):
     half_size = [0,0]
     def getPos(self):
         return [self.getX(), self.getY()]
+    
+    def act(self):
+        if self.getX() > 650:
+            self.setX(650)
+        if self.getX() < 150:
+            self.setX(150)
+        if self.getY() > 450:
+            self.setY(450)
+        if self.getY() < 150:
+            self.setY(150)
         
 class Bullet(Actor):
     def __init__(self):
@@ -80,14 +90,13 @@ class Bullet(Actor):
 
 
 
-def initZombies():
-    for i in range(20):   
-        for i in range(3):
-            zombie = Zombie("sprites/zombie" + str(i) + ".jpg")
-            Y = randint(0, 600)
-            addActor(zombie, Location(800, Y), 180)
-            m_collider.add(zombie)
-        doPause()
+def initZombies():   
+    for i in range(3):
+        zombie = Zombie("sprites/zombie" + str(i) + ".jpg")
+        Y = randint(0, 600)
+        addActor(zombie, Location(800, Y), 180)
+        m_collider.add(zombie)
+    doPause()
 
 
             
@@ -113,7 +122,17 @@ setSimulationPeriod(50)
 initZombies()
 human = Human()
 addActor(human, Location(0, 300), 0)
-#wrap()
 show()
 doRun()
+
+
+NbLifes = 3
+nbHit = 0
+while not isDisposed():
+    setTitle("#KillKount: " + str(nbKillKount) + " #Hits " + str(nbHit))
+    if NbLifes == 0:  # game over
+        addActor(Actor("sprites/gameover.gif"), Location(400, 285))
+        removeActor(Human)
+        doPause()
+    delay(100)
     
