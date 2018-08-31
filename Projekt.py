@@ -1,13 +1,24 @@
 from gamegrid import *
 from random import randint
 
+
+NbLifes = 3
 nbKillKount = 0
+
+def KillKount(self):
+        global nbKillKount
+        nbKillKount += 1
+        playTone([("c''g'a'f'", 100)])
+
 
 class collider:
     objects = []
     def add(self, obj):
         self.objects.append(obj)
         return
+    
+    def remove(self, obj):
+        self.objects.remove(obj)
     
     def check(self, p_obj):
         colliders = []
@@ -75,12 +86,17 @@ class Bullet(Actor):
     
     half_size = [0,0]
         
+        
     def act(self):
+        self.move(25)
         colliders = m_collider.check(self)
+        print(len(colliders))
         for idx, obj in enumerate(colliders):
             obj.hide()
             removeActor(self)
-        self.move(25)
+            m_collider.remove(obj)
+            KillKount(self)
+
     
     def getPos(self):
         return [self.getX(), self.getY()]
@@ -115,6 +131,7 @@ def onKeyRepeated(keyCode):
         addActor(bullet, Location(human.getX(), human.getY()), 0)
 
 
+
             
         
 makeGameGrid(800, 600, 1, None, "sprites/lane.gif", False, keyRepeated = onKeyRepeated)
@@ -126,10 +143,9 @@ show()
 doRun()
 
 
-NbLifes = 3
-nbHit = 0
+
 while not isDisposed():
-    setTitle("#KillKount: " + str(nbKillKount) + " #Hits " + str(nbHit))
+    setTitle(" #KillKount " + str(nbKillKount))
     if NbLifes == 0:  # game over
         addActor(Actor("sprites/gameover.gif"), Location(400, 285))
         removeActor(Human)
