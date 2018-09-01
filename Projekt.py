@@ -2,13 +2,21 @@ from gamegrid import *
 from random import randint
 
 
-NbLifes = 3
+nbLifes = 3
 nbKillKount = 0
 
+#gamepadX = 1200
+#halfgam epadX = (gamepadX / 2) + 50
+
 def KillKount(self):
-        global nbKillKount
-        nbKillKount += 1
-        playTone([("c''g'a'f'", 100)])
+    global nbKillKount
+    nbKillKount += 1
+    playTone([("c'h", 10)])
+
+def Lifes(self):
+    global nbLifes
+    nbLifes -= 1
+    delay(10)
 
 
 class collider:
@@ -50,7 +58,8 @@ class Zombie(Actor):
     half_size = [0,0]
     
     def act(self):
-        self.move(1)
+        Z = randint(1,4)
+        self.move(Z)
     
     def getPos(self):
         return [self.getX(), self.getY()]
@@ -65,6 +74,7 @@ class Human(Actor):
         self.half_size[1] = self.getHeight(0)/2
     
     half_size = [0,0]
+    
     def getPos(self):
         return [self.getX(), self.getY()]
     
@@ -77,12 +87,17 @@ class Human(Actor):
             self.setY(450)
         if self.getY() < 150:
             self.setY(150)
+        colliders = m_collider.check(self)
+        for idx, obj in enumerate(colliders):
+            Lifes(self)
+            
+            
         
 class Bullet(Actor):
     def __init__(self):
         Actor.__init__(self, "sprites/Orb.gif")
-        self.half_size[0] = self.getWidth(0)/2
-        self.half_size[1] = self.getHeight(0)/2
+        self.half_size[0] = self.getWidth(0)/3
+        self.half_size[1] = self.getHeight(0)/3
     
     half_size = [0,0]
         
@@ -100,18 +115,27 @@ class Bullet(Actor):
     
     def getPos(self):
         return [self.getX(), self.getY()]
-       
-            
+
+
+class Start(Actor):
+    def __init__(self):
+        Actor.__init__(self, "sprites/start.jpg")
+    
+    def act(self):
+        removeActor(self)
+     
     
 
 
 
-def initZombies():   
-    for i in range(3):
-        zombie = Zombie("sprites/zombie" + str(i) + ".jpg")
-        Y = randint(0, 600)
-        addActor(zombie, Location(800, Y), 180)
-        m_collider.add(zombie)
+def initZombies():
+    for i in range(33):  
+        for i in range(3):
+            zombie = Zombie("sprites/zombie" + str(i) + ".jpg")
+            Y = randint(0, 600)
+            X = randint(800, 2000)
+            addActor(zombie, Location(X, Y), 180)
+            m_collider.add(zombie)
     doPause()
 
 
@@ -132,23 +156,35 @@ def onKeyRepeated(keyCode):
 
 
 
+
+
             
-        
+
+   
 makeGameGrid(800, 600, 1, None, "sprites/lane.gif", False, keyRepeated = onKeyRepeated)
-setSimulationPeriod(50)
+setSimulationPeriod(40)
 initZombies()
 human = Human()
 addActor(human, Location(0, 300), 0)
+start = Start()
+addActor(start, Location(400, 300))
 show()
+delay(3000)
 doRun()
 
 
 
 while not isDisposed():
-    setTitle(" #KillKount " + str(nbKillKount))
-    if NbLifes == 0:  # game over
-        addActor(Actor("sprites/gameover.gif"), Location(400, 285))
-        removeActor(Human)
-        doPause()
-    delay(100)
+    setTitle(" KillKount " + str(nbKillKount))
+    if nbLifes < 0:  # game over
+        addActor(Actor("sprites/gameover.gif"), Location(400, 300))
+        removeActor(human)
+        playTone([("h'f'd'c'", 100)])
+    if nbKillKount == 99: #win
+        addActor(Actor("sprites/win.gif"), Location(400, 300))
+        removeActor(human)
+        playTone([("c'd'f'h'", 100)])
+    delay(500)
+    playTone(["cdfcdfhedeedcdefdefc'feffe", 100])
+
     
