@@ -162,7 +162,7 @@ def onKeyRepeated(keyCode):
 
    
 makeGameGrid(800, 600, 1, None, "sprites/lane.gif", False, keyRepeated = onKeyRepeated)
-setSimulationPeriod(40)
+setSimulationPeriod(50)
 initZombies()
 human = Human()
 addActor(human, Location(0, 300), 0)
@@ -171,6 +171,9 @@ addActor(start, Location(400, 300))
 show()
 delay(3000)
 doRun()
+playTone([("cdfcdfhedeedcdefdefc'feffecdfcdfhedeedcdefdefc'feffecdfcdfhedeedcdefdefc'feffecdfcdfhedeedcdefdefc'feffecdfcdfhedeedcdefdefc'feffecdfcdfhedeedcdefdefc'feffec", 200)], block = False)
+
+
 
 
 
@@ -184,7 +187,7 @@ while not isDisposed():
         addActor(Actor("sprites/win.gif"), Location(400, 300))
         removeActor(human)
         playTone([("c'd'f'h'", 100)])
-    delay(500)
-    playTone(["cdfcdfhedeedcdefdefc'feffe", 100])
+    delay(50)
+
 
     
