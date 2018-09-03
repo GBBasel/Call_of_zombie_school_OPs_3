@@ -167,7 +167,7 @@ def onKeyRepeated(keyCode):
             
 
    
-makeGameGrid(800, 600, 1, None, "sprites/lane.gif", False, keyRepeated = onKeyRepeated)
+makeGameGrid(800, 600, 1, None, "sprites/street.jpg", False, keyRepeated = onKeyRepeated)
 setSimulationPeriod(50)
 initZombies()
 human = Human()
