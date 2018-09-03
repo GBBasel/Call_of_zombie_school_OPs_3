@@ -1,6 +1,6 @@
 from gamegrid import *
 from random import randint
-
+import time
 
 nbLifes = 3
 nbKillKount = 0
@@ -58,7 +58,7 @@ class Zombie(Actor):
     half_size = [0,0]
     
     def act(self):
-        Z = randint(1,4)
+        Z = randint(2, 5)
         self.move(Z)
     
     def getPos(self):
@@ -139,9 +139,11 @@ def initZombies():
     doPause()
 
 
-            
+bullet_timer = time.time()
+bullet_time = 0.3         
     
 def onKeyRepeated(keyCode):
+    global bullet_timer
     if keyCode == 37: # left
         human.setX(human.getX() - 5)
     elif keyCode == 38: # up
@@ -151,8 +153,12 @@ def onKeyRepeated(keyCode):
     elif keyCode == 40: # down
         human.setY(human.getY() + 5)
     elif keyCode == 32:#shoot
-        bullet = Bullet()
-        addActor(bullet, Location(human.getX(), human.getY()), 0)
+        delta = time.time()-bullet_timer
+        if delta >= bullet_time:
+            bullet_timer = time.time()
+            bullet = Bullet()
+            addActor(bullet, Location(human.getX(), human.getY()), 0)
+
 
 
 
