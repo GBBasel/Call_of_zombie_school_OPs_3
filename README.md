@@ -12,4 +12,24 @@ Startbildschirm mit Erklärungen zum Spielablauf
 
 ## Programmieren:
 
+Zunächst haben wir die Actors definiert. Es gibt einen Menschen (human), die Zombies (zombie) und eine Kugel (bullet). Ausserdem gibt es eine Klasse für den Startbildschirm (start) und eine Klasse, die die Kollissionen überwacht.
+
+### Human
+
+Er erscheint zu Beginn des Spiels an der linken Seite des Spielfelds. Mit den vier Pfeiltasten lässt er sich bewegen, wobei er sich immer fünf Pixel bewegt. Sobald er sich aus dem Spielfeld heraus bewegt, wird er an den Rand zurückgesetzt. Somit wird verhindert, dass er das Spielfeld verlässt.
+
+### Bullet
+
+Die Kugel wird durch die Spacetaste erzeugt und  entsteht immer dort, wo sich der Mensch gerade befindet. Sie fragt beim erzeugen die Koordinaten des Human ab. Es gibt eine Verzögerung von dreissig Millisekunden zwischen den Schüssen, damit mit einem Drücken der Taste nicht mehrere Zombies vernichtet werden können.
+
+### Zombies
+
+
+
+
+
+
+
+## Schierigkeiten
+
 Beim Programmieren des Spiel stiessen wir auf verschiedene Schwierigkeiten. Zunächst einmal funktionierten die Collissionevents nicht so, wie uns das durch die Tigerjythonseite erklärt worden war.

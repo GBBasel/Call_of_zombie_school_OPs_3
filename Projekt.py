@@ -4,6 +4,7 @@ import time
 
 nbLifes = 3
 nbKillKount = 0
+F = 0
 
 #gamepadX = 1200
 #halfgam epadX = (gamepadX / 2) + 50
@@ -86,7 +87,7 @@ class Human(Actor):
         if self.getY() > 450:
             self.setY(450)
         if self.getY() < 150:
-            self.setY(150)
+            self.setY(150) 
         colliders = m_collider.check(self)
         for idx, obj in enumerate(colliders):
             Lifes(self)
@@ -103,6 +104,8 @@ class Bullet(Actor):
         
         
     def act(self):
+        if F < 0:
+            removeActor(self)
         self.move(25)
         colliders = m_collider.check(self)
         print(len(colliders))
@@ -111,6 +114,7 @@ class Bullet(Actor):
             removeActor(self)
             m_collider.remove(obj)
             KillKount(self)
+
 
     
     def getPos(self):
@@ -186,12 +190,14 @@ playTone([("cdfcdfhedeedcdefdefc'feffecdfcdfhedeedcdefdefc'feffecdfcdfhedeedcdef
 while not isDisposed():
     setTitle(" KillKount " + str(nbKillKount))
     if nbLifes < 0:  # game over
+        removeAllActors()
         addActor(Actor("sprites/gameover.gif"), Location(400, 300))
-        removeActor(human)
+        F =- 1
         playTone([("h'f'd'c'", 100)])
     if nbKillKount == 99: #win
+        removeAllActors()
         addActor(Actor("sprites/win.gif"), Location(400, 300))
-        removeActor(human)
+        F =- 1
         playTone([("c'd'f'h'", 100)])
     delay(50)
 
