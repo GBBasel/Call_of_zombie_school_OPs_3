@@ -70,7 +70,7 @@ class Zombie(Actor):
         
 class Human(Actor):
     def __init__(self):
-        Actor.__init__(self,"sprites/guywithgun.gif")
+        Actor.__init__(self,"sprites/Human.png")
         self.half_size[0] = self.getWidth(0)/2
         self.half_size[1] = self.getHeight(0)/2
     
@@ -80,14 +80,14 @@ class Human(Actor):
         return [self.getX(), self.getY()]
     
     def act(self):
-        if self.getX() > 650:
-            self.setX(650)
-        if self.getX() < 150:
-            self.setX(150)
-        if self.getY() > 450:
-            self.setY(450)
-        if self.getY() < 150:
-            self.setY(150) 
+        if self.getX() > 750:
+            self.setX(750)
+        if self.getX() < 50:
+            self.setX(50)
+        if self.getY() > 550:
+            self.setY(550)
+        if self.getY() < 50:
+            self.setY(50) 
         colliders = m_collider.check(self)
         for idx, obj in enumerate(colliders):
             Lifes(self)
@@ -96,7 +96,7 @@ class Human(Actor):
         
 class Bullet(Actor):
     def __init__(self):
-        Actor.__init__(self, "sprites/Orb.gif")
+        Actor.__init__(self, "sprites/Bullet.png")
         self.half_size[0] = self.getWidth(0)/3
         self.half_size[1] = self.getHeight(0)/3
     
@@ -133,13 +133,12 @@ class Start(Actor):
 
 
 def initZombies():
-    for i in range(33):  
-        for i in range(3):
-            zombie = Zombie("sprites/zombie" + str(i) + ".jpg")
-            Y = randint(0, 600)
-            X = randint(800, 2000)
-            addActor(zombie, Location(X, Y), 180)
-            m_collider.add(zombie)
+    for i in range(100):  
+        zombie = Zombie("sprites/zombie.png")
+        Y = randint(0, 600)
+        X = randint(800, 2000)
+        addActor(zombie, Location(X, Y), 180)
+        m_collider.add(zombie)
     doPause()
 
 
@@ -172,7 +171,7 @@ def onKeyRepeated(keyCode):
 
    
 makeGameGrid(800, 600, 1, None, "sprites/street.jpg", False, keyRepeated = onKeyRepeated)
-setSimulationPeriod(50)
+setSimulationPeriod(75)
 initZombies()
 human = Human()
 addActor(human, Location(0, 300), 0)
@@ -181,7 +180,7 @@ addActor(start, Location(400, 300))
 show()
 delay(3000)
 doRun()
-playTone([("cdfcdfhedeedcdefdefc'feffecdfcdfhedeedcdefdefc'feffecdfcdfhedeedcdefdefc'feffecdfcdfhedeedcdefdefc'feffecdfcdfhedeedcdefdefc'feffecdfcdfhedeedcdefdefc'feffec", 200)], block = False)
+playTone([("cdfcdfhedeedcdefdefc'feffecdfcdfhedeedcdefdefc'feffecdfcdfhedeedcdefdefc'feffecdfcdfhedeedcdefdefc'feffecdfcdfhedeedcdefdefc'feffecdfcdfhedeedcdefdefc'feffeccdfcdfhedeedcdefdefc'feffeccdfcdfhedeedcdefdefc'feffec", 200)], block = False)
 
 
 
@@ -194,7 +193,7 @@ while not isDisposed():
         addActor(Actor("sprites/gameover.gif"), Location(400, 300))
         F =- 1
         playTone([("h'f'd'c'", 100)])
-    if nbKillKount == 99: #win
+    if nbKillKount == 100: #win
         removeAllActors()
         addActor(Actor("sprites/win.gif"), Location(400, 300))
         F =- 1
