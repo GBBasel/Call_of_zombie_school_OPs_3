@@ -147,6 +147,12 @@ def initZombies():
         X = randint(2000, 2200)
         addActor(zombie, Location(X, Y), 180)
         m_collider.add(zombie)
+    for i in range(1):  
+        zombie = Zombie("sprites/boss.png")
+        Y = randint(150, 450)
+        X = 2200
+        addActor(zombie, Location(X, Y), 180)
+        m_collider.add(zombie)
     doPause()
 
 
@@ -201,7 +207,7 @@ while not isDisposed():
         addActor(Actor("sprites/gameover.gif"), Location(400, 300))
         F =- 1
         playTone([("h'f'd'c'", 100)])
-    if nbKillKount == U + V: #win
+    if nbKillKount == U + V + 1: #win
         removeAllActors()
         addActor(Actor("sprites/win.gif"), Location(400, 300))
         F =- 1
