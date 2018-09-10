@@ -5,8 +5,9 @@ import time
 nbLifes = 3
 nbKillKount = 0
 F = 0
-U = 12
-V = 8
+U = 80
+V = 19
+n = 1
 
 #gamepadX = 1200
 #halfgamepadX = (gamepadX / 2) + 50
@@ -174,7 +175,7 @@ def onKeyRepeated(keyCode):
         if delta >= bullet_time:
             bullet_timer = time.time()
             bullet = Bullet()
-            addActor(bullet, Location(human.getX(), human.getY()), 0)
+            addActor(bullet, Location(human.getX() + 25, human.getY() - 12), 0)
 
 
 
