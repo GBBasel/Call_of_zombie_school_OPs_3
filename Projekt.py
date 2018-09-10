@@ -5,9 +5,11 @@ import time
 nbLifes = 3
 nbKillKount = 0
 F = 0
+U = 12
+V = 8
 
 #gamepadX = 1200
-#halfgam epadX = (gamepadX / 2) + 50
+#halfgamepadX = (gamepadX / 2) + 50
 
 def KillKount(self):
     global nbKillKount
@@ -80,14 +82,14 @@ class Human(Actor):
         return [self.getX(), self.getY()]
     
     def act(self):
-        if self.getX() > 750:
-            self.setX(750)
+        if self.getX() > 550:
+            self.setX(550)
         if self.getX() < 50:
             self.setX(50)
-        if self.getY() > 550:
-            self.setY(550)
-        if self.getY() < 50:
-            self.setY(50) 
+        if self.getY() > 450:
+            self.setY(450)
+        if self.getY() < 150:
+            self.setY(150) 
         colliders = m_collider.check(self)
         for idx, obj in enumerate(colliders):
             Lifes(self)
@@ -133,10 +135,16 @@ class Start(Actor):
 
 
 def initZombies():
-    for i in range(100):  
+    for i in range(U):  
         zombie = Zombie("sprites/zombie.png")
-        Y = randint(0, 600)
+        Y = randint(150, 450)
         X = randint(800, 2000)
+        addActor(zombie, Location(X, Y), 180)
+        m_collider.add(zombie)
+    for i in range(V):  
+        zombie = Zombie("sprites/zombie.png")
+        Y = randint(150, 450)
+        X = randint(2000, 2200)
         addActor(zombie, Location(X, Y), 180)
         m_collider.add(zombie)
     doPause()
@@ -193,7 +201,7 @@ while not isDisposed():
         addActor(Actor("sprites/gameover.gif"), Location(400, 300))
         F =- 1
         playTone([("h'f'd'c'", 100)])
-    if nbKillKount == 100: #win
+    if nbKillKount == U + V: #win
         removeAllActors()
         addActor(Actor("sprites/win.gif"), Location(400, 300))
         F =- 1
