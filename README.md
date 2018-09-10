@@ -16,15 +16,26 @@ Zunächst haben wir die Actors definiert. Es gibt einen Menschen (human), die Zom
 
 ### Human
 
+![Startbildschirm](https://raw.githubusercontent.com/GBBasel/Call_of_zombie_school_OPs_3/master/sprites/Human.png)
+
 Er erscheint zu Beginn des Spiels an der linken Seite des Spielfelds. Mit den vier Pfeiltasten lässt er sich bewegen, wobei er sich immer fünf Pixel bewegt. Sobald er sich aus dem Spielfeld heraus bewegt, wird er an den Rand zurückgesetzt. Somit wird verhindert, dass er das Spielfeld verlässt.
 
 ### Bullet
+
+![Startbildschirm](https://raw.githubusercontent.com/GBBasel/Call_of_zombie_school_OPs_3/master/sprites/Bullet.png)
 
 Die Kugel wird durch die Spacetaste erzeugt und  entsteht immer dort, wo sich der Mensch gerade befindet. Sie fragt beim erzeugen die Koordinaten des Human ab. Es gibt eine Verzögerung von dreissig Millisekunden zwischen den Schüssen, damit mit einem Drücken der Taste nicht mehrere Zombies vernichtet werden können.
 
 ### Zombies
 
+![Startbildschirm](https://raw.githubusercontent.com/GBBasel/Call_of_zombie_school_OPs_3/master/sprites/zombie.png)
 
+Die Zombies werden ausserhalb des Spielfeldes an zufälligen Orten erzeugt und gehen nach links. Wenn sie den Menschen berühren, ist das Spiel vorbei.
+
+
+![Startbildschirm](https://raw.githubusercontent.com/GBBasel/Call_of_zombie_school_OPs_3/master/sprites/boss.png)
+
+Der Boss ist der letzte Zombie, der erscheint. Er ist eine Art mutierte Wassermelone.
 
 
 
