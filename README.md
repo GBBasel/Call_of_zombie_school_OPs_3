@@ -64,16 +64,23 @@ Beim Programmieren des Spiel stiessen wir auf verschiedene Schwierigkeiten.
 ## Der Code
 
 `from gamegrid import *
+
  from random import randint
+
  import time`
 
 Alle Funktionen von Gamegrid, _randint_ und time werden importiert.
 
 `nbLifes = 3  #Leben
+
  nbKillKount = 0  #Punkte
+
  F = 0   # Bullet wird entfernt, wenn F < 0 (nach Ende des Spiel kann nicht mehr geschossen werden)
+
  U = 80  # Zombies erste Welle
+
  V = 19  # Zombies zweite Welle
+
  n = 1  # Boss`
 
 
