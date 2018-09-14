@@ -28,7 +28,7 @@ Die Kugel wird durch die Spacetaste erzeugt und  entsteht immer dort, wo sich de
 
 ### Zombies
 
-![Startbildschirm](https://raw.githubusercontent.com/GBBasel/Call_of_zombie_school_OPs_3/master/sprites/zombie.png)
+![Startbildschirm](https://raw.githubusercontent.com/GBBasel/Call_of_zombie_school_OPs_3/master/sprites/Zombie.png)
 
 Die Zombies werden ausserhalb des Spielfeldes an zufälligen Orten erzeugt und gehen nach links. Wenn sie den Menschen berühren, ist das Spiel vorbei.
 
