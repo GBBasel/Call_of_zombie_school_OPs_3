@@ -59,7 +59,6 @@ class Zombie(Actor):
         Actor.__init__(self, path)
         self.half_size[0] = self.getWidth(0)/5
         self.half_size[1] = self.getHeight(0)/5
-        self.health = 2
         
     half_size = [0,0]  #Mitte der Figur definiert
     
@@ -113,12 +112,9 @@ class Bullet(Actor):
         self.move(25)  #Bewegt sich nach vorne
         colliders = m_collider.check(self)
         for idx, obj in enumerate(colliders): #Wenn Zombie getroffen wird
-            print(obj.health)
-            obj.health -= 1
-            if(obj.health <= 0):
-                removeActor(obj)
-                m_collider.remove(obj)
-                KillKount(self)
+            removeActor(obj)
+            m_collider.remove(obj)
+            KillKount(self)
             removeActor(self)
 
     
