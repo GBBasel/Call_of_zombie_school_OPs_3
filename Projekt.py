@@ -7,7 +7,7 @@ nbKillKount = 0  #Punkte
 F = 0   # Bullet wird entfernt, wenn F < 0 (nach Ende des Spiel kann nicht mehr geschossen werden)
 U = 80  # Zombies erste Welle
 V = 19  # Zombies zweite Welle
-n = 1   # Boss
+n = 1  # Boss
 
 #Theoretische Umsetzung der Fenstergrösse:
 #gamepadX = 1200
@@ -59,6 +59,7 @@ class Zombie(Actor):
         Actor.__init__(self, path)
         self.half_size[0] = self.getWidth(0)/5
         self.half_size[1] = self.getHeight(0)/5
+        self.health = 2
         
     half_size = [0,0]  #Mitte der Figur definiert
     
@@ -67,9 +68,7 @@ class Zombie(Actor):
         self.move(Z)
     
     def getPos(self):   #Eigene Position bestimmen
-        return [self.getX(), self.getY()]
-
-        
+        return [self.getX(), self.getY()]      
         
         
 class Human(Actor):
@@ -83,7 +82,8 @@ class Human(Actor):
     def getPos(self):   #Eigene Position bestimmen
         return [self.getX(), self.getY()]
     
-    def act(self):   
+    def act(self):
+        print("Yeah")
         if self.getX() > 550:
             self.setX(550)
         if self.getX() < 50:
@@ -112,13 +112,14 @@ class Bullet(Actor):
             removeActor(self)
         self.move(25)  #Bewegt sich nach vorne
         colliders = m_collider.check(self)
-        print(len(colliders))
         for idx, obj in enumerate(colliders): #Wenn Zombie getroffen wird
-            obj.hide()
+            print(obj.health)
+            obj.health -= 1
+            if(obj.health <= 0):
+                removeActor(obj)
+                m_collider.remove(obj)
+                KillKount(self)
             removeActor(self)
-            m_collider.remove(obj)
-            KillKount(self)
-
 
     
     def getPos(self):     #Bestimmt Position
