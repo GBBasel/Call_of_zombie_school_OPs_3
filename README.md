@@ -63,11 +63,11 @@ Beim Programmieren des Spiel stiessen wir auf verschiedene Schwierigkeiten.
 
 ## Der Code
 
-`from gamegrid import *
-
- from random import randint
-
- import time`
+```bash
+from gamegrid import *
+from random import randint
+import time
+```
 
 Alle Funktionen von Gamegrid, _randint_ und time werden importiert.
 
