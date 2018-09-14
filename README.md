@@ -43,13 +43,37 @@ Der Boss ist der letzte Zombie, der erscheint. Er ist eine Art mutierte Wasserme
 
 ## Schwierigkeiten
 
-Beim Programmieren des Spiel stiessen wir auf verschiedene Schwierigkeiten. Zunächst einmal funktionierten die Collissionevents nicht so, wie uns das durch die Tigerjythonseite erklärt worden war. Wir mussten eine andere Methode verwenden, um zum Ziel zu kommen.
+Beim Programmieren des Spiel stiessen wir auf verschiedene Schwierigkeiten.
 
-Die Bullet brauchte einen Timer, damit nicht mehr wie eine Kugel auf einmal abgefeuert werden kann.
+* Zunächst einmal funktionierten die Collissionevents nicht so, wie uns das durch die Tigerjythonseite erklärt worden war. Wir mussten eine andere Methode verwenden, um zum Ziel zu kommen.
 
-Die Titelmelodie musste so angepasst werden, dass sie irgendwann aufhört.
+* Die Bullet brauchte einen Timer, damit nicht mehr wie eine Kugel auf einmal abgefeuert werden kann.
 
-Das Laggen konnte durch einen print-Befehl gelöst werden. Wir wissen nicht, wieso.
+* Die Titelmelodie musste so angepasst werden, dass sie irgendwann aufhört.
 
+* Das Laggen konnte durch einen print-Befehl gelöst werden. Wir wissen nicht, wieso.
+
+* Die Collissionboxes brauchten eine spezielle Konstruktion.
+
+* Der Mensch konnte zunächst das Spielfeld verlassen, das konnte aber durch einen Befehlsblock geregelt werden.
+
+* Der Startbildschrim brauchte einiges an Kreativität, einen neuen Actor und eine Verzögerung _delay()_.
+
+
+
+## Der Code
+
+`from gamegrid import *
+ from random import randint
+ import time`
+
+Alle Funktionen von Gamegrid, _randint_ und time werden importiert.
+
+`nbLifes = 3  #Leben
+ nbKillKount = 0  #Punkte
+ F = 0   # Bullet wird entfernt, wenn F < 0 (nach Ende des Spiel kann nicht mehr geschossen werden)
+ U = 80  # Zombies erste Welle
+ V = 19  # Zombies zweite Welle
+ n = 1  # Boss`
 
 
