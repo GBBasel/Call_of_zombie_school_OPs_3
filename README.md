@@ -286,5 +286,5 @@ while not isDisposed():
     delay(50)
 ```
 Diese Schleife überwacht das Spiel, solange das Fenster nicht geschlossen ist. Eine Anzeige mit dem Punktestand wird erzeugt. Wenn die globale Variable nbLifes kleiner als null ist, also alle Leben verbraucht wurden, werden alle Actors entfernt und eine Schrift (_game over_) erscheint. F wird um eins verkleinert, hat daher einen Wert unter null und verhindert so, dass neue Kugel erzeugt werden können. Eine Melodie wird abgespielt.
-Wenn die globale Variable nbKillKount gleich viel beträgt wie die Anzahl der Zombies der ersten und der zweiten Welle, sowie die Anzahl der Bosse, dann hat man gewonnen. Die Actosr werden entfernt; eine Schrift (_you win_) angezeigt. F verhindert wiederum, dass noch geschossen werden kann. Eine andere Melodie wird gespielt.
+Wenn die globale Variable nbKillKount gleich viel beträgt wie die Anzahl der Zombies der ersten und der zweiten Welle, sowie die Anzahl der Bosse, dann hat man gewonnen. Die Actors werden entfernt; eine Schrift (_you win_) angezeigt. F verhindert wiederum, dass noch geschossen werden kann. Eine andere Melodie wird gespielt.
 
